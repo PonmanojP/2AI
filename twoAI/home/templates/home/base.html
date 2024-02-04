@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'home/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300;400;500&family=Montserrat:wght@400;500&family=Moo+Lah+Lah&family=Open+Sans&family=Roboto:wght@400;500&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+    <title>2AI-Home</title>
+    <style>
+      .highlight {
+            background-color: yellow;
+            animation: blink 1s infinite alternate; /* Blinking effect */
+        }
+
+        @keyframes blink {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+
+        body{
+          margin:0;
+          padding:0;
+          box-sizing: border-box;
+          overflow-x: clip;
+          box-sizing: border-box;
+          cursor: url('{% static "home/cursor1.png" %}') 0 0, auto;
+          }
+
+          .nav-item:hover, .nav-item a:hover{
+            cursor: url('{% static "home/cursor2.png" %}') 0 0 ,pointer;
+            }
+
+          .domain-item:hover, .domain-item img:hover{
+            cursor: url('{% static "home/cursor2.png" %}') 0 0 ,pointer;
+            transform: scale(1.1);
+            transition: 0.5s ease-in-out;
+            }
+
+            .card-btn:hover{
+              background-color: #FAD02C;
+              color: black;
+              cursor: url('{% static "home/cursor2.png" %}') 0 0 ,pointer;
+            }
+
+            .quick span:hover{
+            cursor: url('{% static "home/cursor2.png" %}') 0 0 ,pointer;
+            transform: scale(1.05);
+            transition: 0.25s ease-in-out;
+            }
+
+          .faq-accordion-title h2:hover, .faq-accordion-title label:hover{
+            cursor: url('{% static "home/cursor2.png" %}') 0 0 ,pointer;
+          }
+
+  </style>
+
+</head>
+
+<body>
+    
+    <div class = "header">
+        <div id = "bg"></div>
+        <div class="navbar">
+
+            <span id = "logo"><a href="{% url 'home' %}"><img src = "{% static 'home/logo.png' %}" height="45" width = "70"></a></span>
+            <span class = "nav-item" id ="home"><a href="{% url 'home' %}">HOME</a></span>
+            <span class = "nav-item" id ="faculties-nav"><a href="{% url 'faculties' %}">MENTORS</a></span>
+            <span class = "nav-item" id ="about-nav"><a href="{% url 'about' %}">ABOUT</a></span>
+            <span class = "nav-item" id ="faq-nav"><a href="{% url 'faq' %}">FAQs</a></span>
+            <span class = "nav-item"><div class="search-box">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search here">
+                <a class="search-btn" id="searchButton" href="#">
+                  <!-- Seach Icon -->
+                  <img src="{% static 'home/search.png' %}" alt="" height="40" width="40">
+                </a>
+              </div></span>
+            <span class = "nav-item"><a href="{% url 'admin:index' %}"><span class="btn-nav">ADMIN</span></span></a>
+        </div>
+
+        <div id="menuToggle">
+          <!--
+          A fake / hidden checkbox is used as click reciever,
+          so you can use the :checked selector on it.
+          -->
+          <input type="checkbox" />
+          
+          <!--
+          Some spans to act as a hamburger.
+          
+          They are acting like a real hamburger,
+          not that McDonalds stuff.
+          -->
+          <span></span>
+          <span></span>
+          <span></span>
+          
+          <!--
+          Too bad the menu has to be inside of the button
+          but hey, it's pure CSS magic.
+          -->
+          <ul id="menu">
+            <a href="#"><li>HOME</li></a>
+            <a href="#"><li>MENTORS</li></a>
+            <a href="#"><li>ABOUT</li></a>
+            <a href="#"><li>FAQ</li></a>
+          </ul>
+        </div>
+
+      </div>
+
+        {% block content %}
+        {% endblock %}
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+
+    searchButton.addEventListener('click', function () {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+
+        if (searchTerm.length === 0) {
+            return; // Don't perform empty searches
+        }
+
+        // Call your search function or process here
+        const searchResults = performSearch(searchTerm);
+
+        // Scroll to the center of the first matched content and highlight it
+        scrollToResult(searchResults);
+    });
+
+    function performSearch(searchTerm) {
+        // Implement your search logic here
+        // Iterate through the text content of the page
+        // Return the first matching element or any relevant information
+        const allTextNodes = document.createTreeWalker(
+            document.body,
+            NodeFilter.SHOW_TEXT,
+            null,
+            false
+        );
+
+        let currentNode;
+        while ((currentNode = allTextNodes.nextNode())) {
+            if (currentNode.nodeValue.toLowerCase().includes(searchTerm)) {
+                return currentNode.parentNode; // Return the parent element of the text node
+            }
+        }
+
+        return null; // Return null if no match is found
+    }
+
+    function scrollToResult(result) {
+        if (result) {
+            // Calculate the scroll position to center the element
+            const elementRect = result.getBoundingClientRect();
+            const absoluteElementTop = elementRect.top + window.scrollY;
+            const middle = absoluteElementTop - (window.innerHeight / 2);
+
+            // Scroll to the calculated position
+            window.scrollTo({ top: middle, behavior: 'smooth' });
+
+            // Add the highlight class for 2 seconds
+            result.classList.add('highlight');
+
+            // Remove the highlight after 2 seconds
+            setTimeout(function () {
+                result.classList.remove('highlight');
+            }, 2000);
+        } else {
+            alert('No match found');
+        }
+    }
+});
+
+
+</script>
+<script src="{% static 'home/script.js' %}"></script>
+</body>
+
+        <footer>
+            <div class="container">
+                <div class="logo"><img src = "{% static 'home/logo.png' %}" height="45" width = "70">
+            <div class="social">
+                <i class="envelope" style="padding-right:1rem;"></i>
+                <img src="{% static 'home/linkedin.svg' %}" height="50px" width="50px">
+                <i class="linkedin" style="padding-right:1rem;"></i>
+                <img src="{% static 'home/facebook.svg' %}" height="50px" width="50px">
+                <i class="insta" style="padding-right:1rem;"></i>
+                <img src="{% static 'home/instagram-logo.svg' %}" height="50px" width="50px">
+                <i class="facebook" style="padding-right:1rem;"></i>
+                <img src="{% static 'home/envelope-fill.svg' %}" height="50px" width="50px">
+            </div></div>
+          <div class="first">
+            <ul>
+              <li class="a">Company</li>
+              <li>About us</li>
+              <li>Projects</li>
+              <li>Services</li>
+            </ul>
+          </div>
+          <div class="second">
+            <ul>
+              <li>Support</li>
+              <li>FAQs</li>
+              <li>Contact us</li>
+            </ul>
+          </div>
+          <div class="third">
+            <ul>
+              <li>Links</li>
+              <li>Terms & Conditions</li>
+              <li>Privacy Policy</li>
+            </ul>
+        </div>
+          </div class="copyright">
+          <div><p style="padding-top:10px; padding-bottom:10px;">Copyright - PSG College of Technology 2023</p></div>
+        </footer>
+        
+        </html>

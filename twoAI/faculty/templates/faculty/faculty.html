@@ -1,0 +1,72 @@
+<!doctype html> 
+
+{% extends 'home/base.html' %}
+
+{% block content %}
+{% load static %}
+<style>
+  .header{
+    height: auto;
+  }
+  #faculties-nav{
+    border-bottom: 5px solid #FAD02C;
+  }
+
+  #home{
+    border-bottom: none;
+  }
+
+  #contact-nav{
+    border-bottom: none;
+  }
+
+  #about-nav{
+    border-bottom: none;
+  }
+</style>
+
+<h1 id ="title">MENTORS</h1>
+
+<p id = "desc">The faculties of a college play a pivotal role in shaping the educational experience and fostering the intellectual growth of students. Comprising a diverse group of accomplished and passionate educators, these faculties are the driving force behind the institution's mission. Professors, lecturers, and instructors within various departments bring a wealth of knowledge and expertise to their respective fields, enabling them to impart valuable insights to their students. Their dedication extends beyond traditional classroom settings, as they often engage in research, mentoring, and community involvement, enriching the college community as a whole. These esteemed individuals serve as mentors, guiding students on their academic journeys, and inspiring critical thinking, creativity, and a thirst for knowledge. The faculties of a college are the bedrock upon which the institution's reputation and educational legacy are built.
+In addition to their roles in the classroom, college faculties are often actively involved in groundbreaking research, contributing to the advancement of knowledge in their disciplines. Their research not only benefits the academic community but also provides students with the opportunity to engage in real-world applications of their field. This research often leads to collaborative projects, academic publications, and the fostering of innovation within the institution.Furthermore, the faculties of a college serve as mentors and advisors, guiding students through their academic and career paths. They offer a supportive network for students, providing guidance on course selection, internships, and research opportunities. Faculty members often create a nurturing environment where students feel comfortable seeking advice and exploring their academic interests.The dedication of college faculties extends to their involvement in various campus activities and initiatives, enriching the overall college experience. They may serve on committees, organize academic events, and contribute to the development of a vibrant and inclusive campus community.
+</p>
+
+
+<h1 id ="title">OUR MENTORS</h1>
+<div class ="fac-card fade">
+{% for faculty in prof%}
+    <div class="flip-card">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <div class="inner"><img src="{{faculty.photo.url}}" height="150px" width="150px" style="position: absolute; top:10%; left:50%; transform:translate(-50%,0%); border-radius: 50%;"></div>
+        <br>
+        <span>{{faculty.name}}</span><br><br>
+        <span>{{faculty.position}}</span><br><br>
+        <span><span>Experience : </span>{{faculty.experience}} <span>years</span></span>
+      </div>
+      <div class="flip-card-back">
+        <h2>Description</h2>
+        <p>{{faculty.description}}</p>
+        <br>
+        <br>
+        <a href="{{faculty.officiallink}}" target="_blank"><span class= "card-btn">More details</span></a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+
+</div>
+<hr>
+<h2>{{prof.i.name}}</h2>
+<div class="quote">
+    <span>Teaching is the greatest act of <br>optimism<br><br>-Colleen Wilcox </span>
+    <hr>
+</div>
+
+<script src="https://kit.fontawesome.com/546a6ef859.js" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+<script>
+  
+</script>
+{% endblock %}

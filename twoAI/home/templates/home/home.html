@@ -1,0 +1,168 @@
+<!doctype html> 
+
+{% extends 'home/base.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="intro left">
+    <span id = "intro-1">LETS LEARN AI </span><br>
+    <span id = "intro-2">2</span><span id="intro-3">GETHER</span>
+    <p id = "intro-4">Join and connect with the community of developer <br>
+        network of Applied AI Technologies..</p>
+</div>
+
+<div class = "animated right">
+    <div class="compo1"><img src = "{% static 'home/animate.gif' %}"></div>
+    <div class="compo2"><img src = "{% static 'home/ai.png' %}" height="400" width="450"></div>
+    <div class="flowline"><span style="font-weight: 200; letter-spacing: 0.5px;">Incubated by</span> <br>PSG COLLEGE OF TECHNOLOGY</div>
+</div>
+</div>
+
+
+<div class="box">
+<div class="content left">
+<h1 style="color: #333652; font-weight: bold;">WHY ARE WE HERE?</h1>
+<p>
+  
+    It is no doubt that Artificial intelligence and machine learning
+    brings tons of opportunities in the future. Creating well equipped
+    labs is one of the best thing for an institution that can be offered
+    for students. become accepted by colleges and universities as an
+    effective tool for automating a number of tasks effectively and
+    efficiently. Chat-bots can answer students’ questions about class
+    scheduling or check in about their mental health. AI-generated
+    emails can remind status about important deadlines, prompt them to
+    register for classes, t assignments and pay their fees on time. And,
+    in a particularly control use, AI-based software is increasingly
+    able to detect plagiarized assignments.
+  
+</p>
+</div>
+<div class="yellow right"><h3>ANNOUNCEMENTS</h3>
+  <br>
+<ul>
+  {% for news in announcement %}
+  <li>{{news.Enter_Announcement}}</li>
+  <br>
+  {% endfor %}
+</div>
+</div>
+
+
+
+<div class="vis-mis-container">
+<div class="right vis">
+<img src="{% static 'home/vision.gif' %}" class="imgv">
+<section class="vision">
+    <h1 class="animate">VISION</h1>
+    <div class="animate">Computer vision is a field of artificial intelligence (AI) that enables computers and systems to derive meaningful information from digital images, videos and other visual inputs — and take actions or make recommendations based on that information.</div>
+</section>
+</div>
+
+<div class="left mis">
+<section  class="mission">
+<div>
+<h1 class="animate">MISSION</h1>
+<div class="animate">Computer vision is a field of artificial intelligence (AI) that enables computers and systems to derive meaningful information from digital images, videos and other visual inputs — and take actions or make recommendations based on that information.</div>
+</div>
+</section>
+<img src="{% static 'home/mission.gif' %}" class="imgm">
+</div>
+
+</div>
+
+<h1 style="text-align: center; font-family: Montserrat; font-weight: bold; font-size: 48px; color: #333652;">OUR DOMAINS</h1>
+
+<div class="domain">
+
+<div class="dot1 fade">
+<span class="domain-item" ><a href = "{% url 'ml' %}"><img id="domain-img"src="{% static 'home/machine-language.png' %}" alt=""></a>
+<span class="domain-name">Machine Learning</span>
+</span>
+<span class="domain-item" ><a href="{% url 'dl' %}"><img id="domain-img"  src="{% static 'home/deep-learning.png' %}" alt="" ></a>
+  <span class="domain-name">Deep Learning</span>
+</span>
+<span class="domain-item" ><a href="{% url 'vision' %}"><img id="domain-img"src="{% static 'home/vision.png' %}" alt=""></a>
+  <span class="domain-name1">Vision</span>
+</span>
+<span class="domain-item" ><a href="{% url 'bigdata' %}"><img id="domain-img"src="{% static 'home/big-data.png' %}" alt=""></a>
+  <span class="domain-name1">Big Data</span>
+</span>
+<span class="domain-item" ><a href = "{% url 'edge' %}"><img id="domain-img" src="{% static 'home/edge.png' %}" alt=""></a>
+  <span class="domain-name1">Edge</span>
+</span>
+</div>
+<div class="dot2 fade" >
+<span class="domain-item" ><a href="{% url 'cloud' %}"><img id="domain-img"src="{% static 'home/cloud.png' %}" alt=""></a>
+  <span class="domain-name1">Cloud</span>
+</span>
+<span class="domain-item" ><a href="{% url 'nlp' %}"><img id="domain-img"src="{% static 'home/nlp.png' %}" alt=""></a>
+  <span class="domain-name1">NLP</span>
+</span>
+<span class="domain-item" ><a href="{% url 'web' %}"><img id="domain-img" src="{% static 'home/web-development.png' %}" alt=""></a>
+  <span class="domain-name">Web Development</span>
+</span>
+<span class="domain-item" ><a href="{% url 'design' %}"><img id="domain-img" src="{% static 'home/ambiance.png' %}" alt=""></a>
+  <span class="domain-name">Design & Ambience</span>
+</span>
+</div>
+</div>
+
+
+
+<section class="carousel">
+<ol class="carousel__viewport">
+  {% for galleries in gallery%}
+<li class="carousel__slide">
+<div
+  class="carousel__snapper"
+  style="background-image: url('{{galleries.image.url}}')"
+></div>
+</li>
+{% endfor %}
+<!-- <li class="carousel__slide">
+<div
+  class="carousel__snapper"
+  style="background-image: url('images/2.jpg')"
+></div>
+</li>
+<li class="carousel__slide">
+<div
+  class="carousel__snapper"
+  style="background-image: url('images/3.jpg')"
+></div>
+</li>
+<li class="carousel__slide">
+<div
+  class="carousel__snapper"
+  style="background-image: url('images/4.jpg')"
+></div>
+</li>
+<li class="carousel__slide">
+<div
+  class="carousel__snapper"
+  style="background-image: url('images/5.jpg')"
+></div>
+</li>
+<li class="carousel__slide">
+<div
+  class="carousel__snapper"
+  style="background-image: url('images/6.jpg')"
+></div>
+</li>
+<li class="carousel__slide">
+<div
+  class="carousel__snapper"
+  style="background-image: url('images/7.jpg')"
+></div>
+</li> -->
+</ol>
+</section>
+
+
+
+<script src="https://kit.fontawesome.com/546a6ef859.js" crossorigin="anonymous"></script>
+<script src="script.js"></script>
+
+{% endblock %}

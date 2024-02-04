@@ -1,0 +1,72 @@
+<!doctype html> 
+
+{% extends 'home/base.html' %}
+
+{% block content %}
+{% load static %}
+
+<style>
+    .header{
+      height: auto;
+    }
+  </style>
+<h1 class = 'dom-header'>Design and Ambience</h1>
+
+<br>
+<br>
+
+<div class="dom-container">
+
+<div class = "dom-vision">
+    <div class = "eye-icon"><img src="{% static 'Domains/eye.png' %}"></div>
+    <p class = "vision-content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem explicabo, doloribus consequatur odio ipsa consequuntur modi ipsam sint illo quia eaque corrupti nisi nobis voluptatum, magni laudantium dolorem cupiditate recusandae?
+    </p>
+    
+</div>
+
+<div class="dom-mission">
+    <div class="eye-icon"><img src="{% static 'Domains/aim.png' %}"></div>
+    <p class = "mission-content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem explicabo, doloribus consequatur odio ipsa consequuntur modi ipsam sint illo quia eaque corrupti nisi nobis voluptatum, magni laudantium dolorem cupiditate recusandae?
+    </p>
+
+</div>
+
+</div>
+
+<br>
+<br>
+
+<h1>Announcements</h1>
+
+<div class = "announcements">
+    <div id = 'newsbox'>
+    <ul id = "announcement-item">
+        {% for item in domainobject%}
+        <li>{{item.Announcement1}}</li>
+        <li>{{item.Announcement2}}</li>
+        <li>{{item.Announcement3}}</li>
+        {% endfor %}
+    </ul>
+</div>
+</div>
+
+<br>
+<br>
+
+<h1>Quick Links</h1>
+
+<div class = 'quick'>
+    {% for item in domainobject%}
+    <a href="{{item.Link_1}}" target="_blank"><span>{{item.Link_text_1}}</span></a>
+    <a href="{{item.Link_2}}" target="_blank"><span>{{item.Link_text_2}}</span></a>
+    <a href="{{item.Link_3}}" target="_blank"><span>{{item.Link_text_3}}</span></a>
+    <a href="{{item.Link_4}}" target="_blank"><span>{{item.Link_text_4}}</span></a>
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock %}
